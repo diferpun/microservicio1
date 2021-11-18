@@ -20,10 +20,11 @@ from django.urls                    import path
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
-    path('login/',TokenObtainPairView.as_view()),
-    path('token/', views.MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('refresh/',TokenRefreshView.as_view()),
+    #path('login/',TokenObtainPairView.as_view()),
+    path('login/',views.MyTokenObtainPairView.as_view()),
+    path('refresh/',TokenRefreshView.as_view),
     path('verifyToken/', views.VerifyTokenView.as_view()),
-    path('create/',views.UserCreateView.as_view()),
-    path('user/<int:pk>',views.UserDetailView.as_view())
+    path('create/',views.userViews.UserCreateView.as_view()),
+    path('user/<int:pk>',views.userViews.UserDetailView.as_view()),
+    path("updateuser/<int:pk>", views.userViews.UserUpdateView.as_view())
 ]

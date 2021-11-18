@@ -1,3 +1,4 @@
-from .userCreateview import UserCreateView
-from .userDetailView import UserDetailView
-from .verifyTokenView import VerifyTokenView
+from .userViews                import UserCreateView
+from .userViews                import UserDetailView
+from .verifyTokenView          import VerifyTokenView
+from .myTokenObtainPairView    import MyTokenObtainPairView

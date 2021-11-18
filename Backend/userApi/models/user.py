@@ -27,12 +27,15 @@ class UserManager(BaseUserManager):
         return user
  
 class User(AbstractBaseUser, PermissionsMixin):
+    
     id = models.BigAutoField(primary_key=True)
-    username = models.CharField('username', max_length = 15, unique=True)
-    name= models.CharField('name', max_length = 15)
-    lastname= models.CharField('lastname', max_length = 15)
-    password = models.CharField('password', max_length = 256)
-    email = models.EmailField('email', max_length = 100)
+    firstname = models.CharField('Firstname', max_length = 60)
+    lastname = models.CharField('Lastname', max_length = 60)
+    username = models.CharField('Username', max_length = 45, unique=True)
+    password = models.CharField('Password', max_length = 256)
+    email = models.EmailField('Email', max_length = 100)
+    isadmi = models.BooleanField(default=True)
+    
     def save(self, **kwargs):  
         some_salt = 'mMUj0DrIK6vgtdIYepkIxN'
         self.password = make_password(self.password, some_salt)

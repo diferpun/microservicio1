@@ -3,6 +3,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+   
     def validate(self, attrs):
         data = super().validate(attrs)
         refresh = self.get_token(self.user)
@@ -12,10 +13,10 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         
         # Add extra responses here
         data['id'] = self.user.id
+        data['username'] = self.user.username
         data['isadmi'] = self.user.isadmi
         data['firstname'] = self.user.firstname
         return data
-
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer

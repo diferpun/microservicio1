@@ -6,7 +6,7 @@ from userApi.models.user    import User
 class UserSerializer(serializers.ModelSerializer):
       class Meta:
           model=User
-          fields=['username','name','lastname','password','email']
+          fields = ['id', 'firstname', 'lastname','username', 'password', 'email', 'isadmi']
           
     
       
