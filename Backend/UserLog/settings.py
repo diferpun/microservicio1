@@ -106,17 +106,31 @@ WSGI_APPLICATION = 'UserLog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'de10cuhqplnpcq',
-        'USER': 'bntzvufxvijqip',
-        'PASSWORD': 'd9e36310ab424fa4d6ddae9da6ee59cc060650bca74c6eea43f6995e25e9a1d9',
-        'HOST': 'ec2-3-228-86-183.compute-1.amazonaws.com',
+        'NAME': 'Mintic',
+        'USER': 'postgres',
+        'PASSWORD': '1085DFpu',
+        'HOST': 'localhost',
         'PORT': '5432',
         'TEST': {'MIRROR': 'default',},
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'de10cuhqplnpcq',
+#         'USER': 'bntzvufxvijqip',
+#         'PASSWORD': 'd9e36310ab424fa4d6ddae9da6ee59cc060650bca74c6eea43f6995e25e9a1d9',
+#         'HOST': 'ec2-3-228-86-183.compute-1.amazonaws.com',
+#         'PORT': '5432',
+#         'TEST': {'MIRROR': 'default',},
+#     }
+# }
 
 
 # Password validation
