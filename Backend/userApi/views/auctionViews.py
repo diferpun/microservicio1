@@ -23,12 +23,24 @@ class BidCreateview(views.APIView):
         valid_data   = tokenBackend.decode(token,verify=False)
         #aux=Bid.objects.filter(auction_id=request.data['auction'],user_id=request.data['user']).exists()         
         #print("check ################",aux)
+          
+        #################### arreglar esto ######################################
+        auction=Auction.objects.get(auction_id=request.data['auction'])
+        current_offer=auction.base_offer
+        
         if request.data['user'] != valid_data['user_id']:
             stringResponse = {'detail':'Unauthorized Request'}
-            return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
+            return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)    
+        
+        if  request.data['offer'] < current_offer or request.data['offer'] == current_offer:
+            stringResponse = {'detail':'low bid'}
+            return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED) 
+        
+        auction.base_offer=request.data['offer']
         serializer.save()
+        auction.save()
+        
         return Response("Bid was created", status=status.HTTP_201_CREATED)
-
 
 class BidDetailView(generics.ListAPIView):
     serializer_class   = BidSerializer
@@ -46,8 +58,24 @@ class BidDetailView(generics.ListAPIView):
             raise PermissionDenied()
         queryset = Bid.objects.filter(user_id=self.kwargs["user"])
         return queryset
+
+class BidTopView(generics.ListAPIView):
+      serializer_class   = BidSerializer
+      permission_classes = (IsAuthenticated,)
+      
+      def get_queryset(self):
+          
+        token        = self.request.META.get('HTTP_AUTHORIZATION')[7:]
+        tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
+        valid_data   = tokenBackend.decode(token,verify=False)
+        if valid_data['user_id'] != self.kwargs['user']:
+            print("son diferentes")  
+            raise PermissionDenied()
+        queryset=Bid.objects.filter(user_id=self.kwargs["user"],
+                                    auction_id=self.kwargs["auction"]).order_by('-offer')
+        return queryset[0:1]
     
-    
+
 class AuctionCreateview(views.APIView):
     def post(self, request, *args, **kwargs):
         serializer = AuctionSerializer(data=request.data)
