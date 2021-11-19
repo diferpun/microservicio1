@@ -1,8 +1,7 @@
 import re
 from typing import ClassVar
 from django.conf                             import settings
-from rest_framework                          import serializers, status, views
-from rest_framework.exceptions import ValidationError
+from rest_framework                          import status, views
 from rest_framework.response                 import Response
 from rest_framework_simplejwt.serializers    import TokenObtainPairSerializer
 from userApi.serializers.userSerializer      import UserSerializer
@@ -11,6 +10,8 @@ from rest_framework.permissions              import IsAuthenticated
 from rest_framework_simplejwt.backends       import TokenBackend
 from userApi.models.auctionModels            import Bid,Auction
 from userApi.serializers.auctionSerializers  import BidSerializer,AuctionSerializer 
+from rest_framework.exceptions               import PermissionDenied
+
 
 class BidCreateview(views.APIView):   
     permission_classes = (IsAuthenticated,)   
@@ -20,7 +21,8 @@ class BidCreateview(views.APIView):
         token        = request.META.get('HTTP_AUTHORIZATION')[7:]
         tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
         valid_data   = tokenBackend.decode(token,verify=False)
-        
+        #aux=Bid.objects.filter(auction_id=request.data['auction'],user_id=request.data['user']).exists()         
+        #print("check ################",aux)
         if request.data['user'] != valid_data['user_id']:
             stringResponse = {'detail':'Unauthorized Request'}
             return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
@@ -30,28 +32,22 @@ class BidCreateview(views.APIView):
 
 class BidDetailView(generics.ListAPIView):
     serializer_class   = BidSerializer
-    #permission_classes = (IsAuthenticated,)
-     
+    permission_classes = (IsAuthenticated,)
     def get_queryset(self):
-        
         token        = self.request.META.get('HTTP_AUTHORIZATION')[7:]
         tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
         valid_data   = tokenBackend.decode(token,verify=False)
-        
-        print("hola 1",valid_data['user_id'])
-        print("hola 4",self.kwargs["user"])
-        
+        #print("hola 1",valid_data['user_id'])
+        #print("hola 4",self.kwargs["user"])
         if valid_data['user_id'] != self.kwargs['user']:
             print("son diferentes")  
             #stringResponse = {'detail':'Unauthorized Request'}
             #return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
-            raise ValidationError({"error": ["You don't have enough permission."]}) 
-        
+            raise PermissionDenied()
         queryset = Bid.objects.filter(user_id=self.kwargs["user"])
         return queryset
-
-
-
+    
+    
 class AuctionCreateview(views.APIView):
     def post(self, request, *args, **kwargs):
         serializer = AuctionSerializer(data=request.data)
