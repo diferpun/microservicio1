@@ -1,1 +1,3 @@
-from .userSerializer import UserSerializer
+from .userSerializer      import UserSerializer
+from .auctionSerializers  import AuctionSerializer
+from .auctionSerializers  import BidSerializer

@@ -24,7 +24,10 @@ urlpatterns = [
     path('login/',views.MyTokenObtainPairView.as_view()),
     path('refresh/',TokenRefreshView.as_view),
     path('verifyToken/', views.VerifyTokenView.as_view()),
-    path('create/',views.userViews.UserCreateView.as_view()),
+    path('createuser/',views.userViews.UserCreateView.as_view()),
     path('user/<int:pk>',views.userViews.UserDetailView.as_view()),
-    path("updateuser/<int:pk>", views.userViews.UserUpdateView.as_view())
+    path("updateuser/<int:pk>", views.userViews.UserUpdateView.as_view()),
+    path("createauction/", views.auctionViews.AuctionCreateview.as_view()),
+    path("createbid/", views.auctionViews.BidCreateview.as_view()),
+    path("detailbid/<int:user>", views.auctionViews.BidDetailView.as_view())
 ]
