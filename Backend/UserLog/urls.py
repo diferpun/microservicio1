@@ -23,11 +23,17 @@ urlpatterns = [
     #path('login/',TokenObtainPairView.as_view()),
     path('login/',views.MyTokenObtainPairView.as_view()),
     path('refresh/',TokenRefreshView.as_view),
-    path('verifyToken/', views.VerifyTokenView.as_view()),
+    #path('verifyToken/', views.VerifyTokenView.as_view()),
     path('createuser/',views.userViews.UserCreateView.as_view()),
     path('user/<int:pk>',views.userViews.UserDetailView.as_view()),
     path("updateuser/<int:pk>", views.userViews.UserUpdateView.as_view()),
+    
     path("createauction/", views.auctionViews.AuctionCreateview.as_view()),
+    path("auctiondetailView/<int:pk>", views.auctionViews.AuctionDetailView.as_view()),
+    path("auctionupdateView/<int:pk>", views.auctionViews.AuctionUpdateView.as_view()),
+    path("auctiondeleteView/<int:pk>", views.auctionViews.AuctionDeleteView.as_view()),
+    path("auctionlistview/", views.auctionViews.AuctionListView.as_view()),
+    
     path("createbid/", views.bidViews.BidCreateview.as_view()),
     path("detailbid/<int:user>", views.bidViews.BidDetailView.as_view()),
     path("topbid/<int:user>/<int:auction>", views.bidViews.BidTopView.as_view()),

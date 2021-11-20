@@ -45,7 +45,6 @@ class BidCreateview(views.APIView):
         auction.save()
         return Response(request.data, status=status.HTTP_201_CREATED)
 
-
 class BidDetailView(generics.ListAPIView):
     serializer_class   = BidSerializer
     permission_classes = (IsAuthenticated,)
