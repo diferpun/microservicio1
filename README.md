@@ -29,7 +29,7 @@ End Points
  <br/>
 •	detailbid/<int:user> => se generan todas las pujas de un usuario requiere token
  <br/> 
-•	topbid/<int:user>/<int:auction>  se muestran la máxima puja que el usuario ha ofrecido en una determinada subasta    
+•	topbid/<int:user>/<int:auction> => se muestran la máxima puja que el usuario ha ofrecido en una determinada subasta    
  <br/>
 •	deletebid/<int:auction> =>  se elimina todas las pujas que un usuario ha realizado en una determinada subasta
  <br/>
