@@ -1,5 +1,7 @@
 # microservicio1 UserLogin/Auction
 
+Esta aplicación plantea el desarrollo de una plataforma web para realizar subastas 
+
 <h2>URL microservicio</h2>
 
 https://minticmicroservicio1.herokuapp.com/
