@@ -11,7 +11,7 @@ End Points
  <br/>
 •	createuser/ => se crea un nuevo usuario
  <br/>
-•	user/<int:pk> => retorna el usuario de la cuenta la llave primaria
+•	user/<int:pk> => retorna los datos del usuario teniendo en cuenta la llave primaria
  <br/>
 •	updateuser/<int:pk> =>  actualiza los datos teniendo en cuenta la llave primaria
  <br/>
@@ -34,3 +34,6 @@ End Points
 •	deletebid/<int:auction> =>  se elimina todas las pujas que un usuario ha realizado en una determinada subasta
  <br/>
 
+# Links para consultas base en postman
+
+https://www.getpostman.com/collections/b2d127f28f14650218d2 
