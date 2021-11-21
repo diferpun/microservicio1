@@ -29,7 +29,7 @@ https://minticmicroservicio1.herokuapp.com/
  <br/> 
 •	auctionlistview/ => Se muestran todas las subastas en la base de datos
  <br/>
-•	createbid/ => se crea una puja requiere el token del usuario
+•	createbid/ => se crea una puja requiere el token del usuario que se ingresa en el postman ademas la oferta debe ser mayor al valor base de la subasta. Este valor base se actualiza cada vez que se hace una oferta mayor
  <br/>
 •	detailbid/<int:user> => se generan todas las pujas de un usuario requiere token
  <br/> 
