@@ -53,4 +53,23 @@ class UserUpdateView(generics.UpdateAPIView):
             return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
         
           return super().update(request, *args, **kwargs)
+
+class UserDeleteView(generics.DestroyAPIView):
+    serializer_class    = UserSerializer
+    permission_classes = (IsAuthenticated,)
+    queryset            =  User.objects.all()
+    
+    def delete(self, request, *args, **kwargs):
+        
+        token        = request.META.get('HTTP_AUTHORIZATION')[7:] # Bearer token
+        tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
+        valid_data   = tokenBackend.decode(token,verify=False)
+        
+        if valid_data['user_id'] != kwargs['pk']:
+            response = {'detail':'Unauthorized Request'}
+            return Response(response, status=status.HTTP_401_UNAUTHORIZED)    
+        super().delete(self, request, *args, **kwargs)
+        return Response(status=status.HTTP_200_OK)
+
+
       
