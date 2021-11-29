@@ -38,6 +38,3 @@ https://minticmicroservicio1.herokuapp.com/
 •	deletebid/<int:auction> =>  se elimina todas las pujas que un usuario ha realizado en una determinada subasta
  <br/>
 
-# Links para consultas base en postman
-
-https://www.getpostman.com/collections/b2d127f28f14650218d2 

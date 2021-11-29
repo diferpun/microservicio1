@@ -1,0 +1,443 @@
+{
+	"info": {
+		"_postman_id": "5fb4f0ed-7539-4db0-9522-207770eb956a",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Microservicio1",
+			"item": [
+				{
+					"name": "createuser",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"firstname\": \"diego\",\r\n    \"lastname\": \"pena\",\r\n    \"username\": \"fdiego123\",\r\n    \"password\": \"diego\",\r\n    \"email\": \"diego@gmail.com\",\r\n    \"isadmi\": true\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/createuser/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"createuser",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"username\": \"fdiego123\",\r\n    \"password\": \"diego\"\r\n}\r\n\r\n ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/login/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM4MjI4ODM5LCJqdGkiOiI2ZThhMmRlNGZhN2Q0ZTVkOGU4YWUzNjljNmM2YmVlZCIsInVzZXJfaWQiOjJ9.tchayPpaKkS2ck7nbGUcqZCS8OmM2DHgc5L9I_Rov9g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"firstname\": \"diego\",\r\n    \"lastname\": \"unigarro\",\r\n    \"username\": \"fdiego123\",\r\n    \"password\": \"diego\",\r\n    \"email\": \"diego@gmail.com\",\r\n    \"isadmi\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/updateuser/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"updateuser",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_auction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"product\": \"A153n\",\r\n    \"base_offer\":500.17,\r\n    \"time_ending\": null \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/createauction/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"createauction",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_bid",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM4MjI4ODM5LCJqdGkiOiI2ZThhMmRlNGZhN2Q0ZTVkOGU4YWUzNjljNmM2YmVlZCIsInVzZXJfaWQiOjJ9.tchayPpaKkS2ck7nbGUcqZCS8OmM2DHgc5L9I_Rov9g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"user\": 2,\r\n    \"auction\": 3,\r\n    \"offer\": 700\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/createbid/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"createbid",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_detail_bid",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM4MjI4ODM5LCJqdGkiOiI2ZThhMmRlNGZhN2Q0ZTVkOGU4YWUzNjljNmM2YmVlZCIsInVzZXJfaWQiOjJ9.tchayPpaKkS2ck7nbGUcqZCS8OmM2DHgc5L9I_Rov9g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/detailbid/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"detailbid",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_top_bid_user_auction",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM4MjI4ODM5LCJqdGkiOiI2ZThhMmRlNGZhN2Q0ZTVkOGU4YWUzNjljNmM2YmVlZCIsInVzZXJfaWQiOjJ9.tchayPpaKkS2ck7nbGUcqZCS8OmM2DHgc5L9I_Rov9g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/topbid/2/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"topbid",
+								"2",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_bid_auction",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM3NDM2Nzc1LCJqdGkiOiIwZjExMzBhMjMzMjE0NWI4OTA2N2YwYjczMTUwNmViZSIsInVzZXJfaWQiOjF9.EF8rbS4yAtlkNFcoKRa42Hfw9NZqSgI7COINEuxhITw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/deletebid/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"deletebid",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "auction_view_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/auctiondetailView/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"auctiondetailView",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "auction_listview",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/auctionlistview/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"auctionlistview",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "auction_delete_id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://minticmicroservicio1.herokuapp.com/auctiondeleteView/1",
+							"protocol": "https",
+							"host": [
+								"minticmicroservicio1",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auctiondeleteView",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "auctionUpdate",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"auction_id\": 3,\r\n        \"product\": \"A12n\",\r\n        \"base_offer\": \"500.17\",\r\n        \"time_starting\": \"2021-11-24T00:00:00Z\",\r\n        \"time_ending\": \"2021-11-30T00:00:00Z\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/auctionupdateView/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"auctionupdateView",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

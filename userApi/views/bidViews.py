@@ -13,7 +13,6 @@ from rest_framework.exceptions               import PermissionDenied
 from django.utils                            import timezone
 import datetime                        
 
-
 class BidCreateview(views.APIView):   
     permission_classes = (IsAuthenticated,) 
     def post(self, request, *args, **kwargs):
