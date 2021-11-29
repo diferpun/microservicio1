@@ -10,35 +10,38 @@ from rest_framework_simplejwt.backends       import TokenBackend
 from userApi.models.auctionModels            import Bid,Auction
 from userApi.serializers.auctionSerializers  import BidSerializer,AuctionSerializer 
 from rest_framework.exceptions               import PermissionDenied
+from django.utils                            import timezone
+import datetime                        
 
 
 class BidCreateview(views.APIView):   
     permission_classes = (IsAuthenticated,) 
-      
     def post(self, request, *args, **kwargs):
-        
         serializer = BidSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        
         token        = request.META.get('HTTP_AUTHORIZATION')[7:]
         tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
         valid_data   = tokenBackend.decode(token,verify=False)
         #aux=Bid.objects.filter(auction_id=request.data['auction'],user_id=request.data['user']).exists()         
         #print("check ################",aux)
-          
         #################### arreglar esto ######################################
         auction=Auction.objects.get(auction_id=request.data['auction'])
         current_offer=auction.base_offer
+        bid_date=datetime.datetime.now(tz=timezone.utc)
         
         if request.data['user'] != valid_data['user_id']:
             stringResponse = {'detail':'Unauthorized Request'}
             return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED) 
-           
         # print("######",type(request.data['offer']),type(current_offer))
         # print("######",float(request.data['offer']) <= float(current_offer))
+       
         if  float(request.data['offer']) <= float(current_offer):
             stringResponse = {'detail':'low bid'}
-            return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED) 
+            return Response(stringResponse, status=status.HTTP_400_BAD_REQUEST) 
+        
+        if  bid_date>auction.time_ending:
+            stringResponse = {'detail':'auction expired'}
+            return Response(stringResponse, status=status.HTTP_400_BAD_REQUEST) 
         
         auction.base_offer=request.data['offer']
         serializer.save()
@@ -59,9 +62,10 @@ class BidDetailView(generics.ListAPIView):
             #stringResponse = {'detail':'Unauthorized Request'}
             #return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
             raise PermissionDenied()
+        
         queryset = Bid.objects.filter(user_id=self.kwargs["user"])
         return queryset
-
+    
 class BidTopView(generics.ListAPIView):
       serializer_class   = BidSerializer
       permission_classes = (IsAuthenticated,)
@@ -76,7 +80,6 @@ class BidTopView(generics.ListAPIView):
         queryset=Bid.objects.filter(user_id=self.kwargs["user"],
                                     auction_id=self.kwargs["auction"]).order_by('-offer')
         return queryset[0:1]
-
 
 class BidDeleteview(generics.DestroyAPIView):
         serializer_class    = BidSerializer
