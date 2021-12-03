@@ -17,14 +17,13 @@ class AuctionCreateview(views.APIView):
         if Auction.objects.filter(product=request.data['product']).exists():
            return Response("Auction already exist", status=status.HTTP_400_BAD_REQUEST)    
         serializer.save()
-        return Response("Auction was created", status=status.HTTP_201_CREATED)
+        return Response(request.data, status=status.HTTP_201_CREATED)
 
 class AuctionDetailView(generics.RetrieveAPIView):
         serializer_class   = AuctionSerializer 
         queryset           = Auction.objects.all()
         def get(self, request, *args, **kwargs):
             return super().get(request, *args, **kwargs)
-
 
 class AuctionUpdateView(generics.UpdateAPIView):
         serializer_class   =  AuctionSerializer

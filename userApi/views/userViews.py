@@ -20,56 +20,56 @@ class UserCreateView(views.APIView):
         tokenSerializer.is_valid(raise_exception=True)
         return Response(tokenSerializer.validated_data, status=status.HTTP_201_CREATED)
     
-
 class UserDetailView(generics.RetrieveAPIView):
     queryset           = User.objects.all()
     serializer_class   = UserSerializer
-    permission_classes = (IsAuthenticated,)
-    
+    #permission_classes = (IsAuthenticated,)
     def get(self, request, *args, **kwargs):
+        # token        = request.META.get('HTTP_AUTHORIZATION')[7:] # Bearer token
+        # tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
+        # valid_data   = tokenBackend.decode(token,verify=False)
         
-        token        = request.META.get('HTTP_AUTHORIZATION')[7:] # Bearer token
-        tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
-        valid_data   = tokenBackend.decode(token,verify=False)
-        
-        if valid_data['user_id'] != kwargs['pk']:
-            stringResponse = {'detail':'Unauthorized Request'}
-            return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
-            
+        # if valid_data['user_id'] != kwargs['pk']:
+        #     stringResponse = {'detail':'Unauthorized Request'}
+        #     return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
         return super().get(request, *args, **kwargs)    
     
 class UserUpdateView(generics.UpdateAPIView):
       serializer_class   = UserSerializer        
-      permission_classes = (IsAuthenticated,)  
-      queryset           = User.objects.all()
-      
+      #permission_classes = (IsAuthenticated,)  
+      queryset           = User.objects.all()  
       def put(self, request, *args, **kwargs):
-          token        = request.META.get('HTTP_AUTHORIZATION')[7:]
-          tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
-          valid_data   = tokenBackend.decode(token,verify=False)
+        #   token        = request.META.get('HTTP_AUTHORIZATION')[7:]
+        #   tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
+        #   valid_data   = tokenBackend.decode(token,verify=False)
           
-          if valid_data['user_id'] != kwargs['pk']:
-            stringResponse = {'detail':'Unauthorized Request'}
-            return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
-        
+        #   if valid_data['user_id'] != kwargs['pk']:
+        #     stringResponse = {'detail':'Unauthorized Request'}
+        #     return Response(stringResponse, status=status.HTTP_401_UNAUTHORIZED)
           return super().update(request, *args, **kwargs)
+
 
 class UserDeleteView(generics.DestroyAPIView):
     serializer_class    = UserSerializer
-    permission_classes = (IsAuthenticated,)
+    #permission_classes = (IsAuthenticated,)
     queryset            =  User.objects.all()
     
     def delete(self, request, *args, **kwargs):
+        # token        = request.META.get('HTTP_AUTHORIZATION')[7:] # Bearer token
+        # tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
+        # valid_data   = tokenBackend.decode(token,verify=False)
         
-        token        = request.META.get('HTTP_AUTHORIZATION')[7:] # Bearer token
-        tokenBackend = TokenBackend(algorithm=settings.SIMPLE_JWT['ALGORITHM'])
-        valid_data   = tokenBackend.decode(token,verify=False)
-        
-        if valid_data['user_id'] != kwargs['pk']:
-            response = {'detail':'Unauthorized Request'}
-            return Response(response, status=status.HTTP_401_UNAUTHORIZED)    
+        # if valid_data['user_id'] != kwargs['pk']:
+        #     response = {'detail':'Unauthorized Request'}
+        #     return Response(response, status=status.HTTP_401_UNAUTHORIZED)    
         super().delete(self, request, *args, **kwargs)
         return Response(status=status.HTTP_200_OK)
 
-
+class UserListView(generics.ListAPIView):
+      serializer_class    = UserSerializer
+      def get_queryset(self):
+            queryset = User.objects.all()
+            return queryset  
+      
+      
       

@@ -28,6 +28,7 @@ urlpatterns = [
     path('user/<int:pk>',views.userViews.UserDetailView.as_view()),
     path("updateuser/<int:pk>", views.userViews.UserUpdateView.as_view()),
     path("deleteuser/<int:pk>", views.userViews.UserDeleteView.as_view()),
+    path("listusers/",views.userViews.UserListView.as_view()),
     
     path("createauction/", views.auctionViews.AuctionCreateview.as_view()),
     path("auctiondetailView/<int:pk>", views.auctionViews.AuctionDetailView.as_view()),
@@ -38,5 +39,5 @@ urlpatterns = [
     path("createbid/", views.bidViews.BidCreateview.as_view()),
     path("detailbid/<int:user>", views.bidViews.BidDetailView.as_view()),
     path("topbid/<int:user>/<int:auction>", views.bidViews.BidTopView.as_view()),
-    path("deletebid/<int:auction>",views.bidViews.BidDeleteview.as_view())
+    path("deletebid/<int:user>/<int:auction>",views.bidViews.BidDeleteview.as_view())
 ]

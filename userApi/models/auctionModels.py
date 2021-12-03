@@ -8,7 +8,7 @@ class Auction(models.Model):
        product = models.CharField(max_length=50)
        base_offer=models.DecimalField(max_digits=10,decimal_places=2)
        time_starting = models.DateTimeField(default=datetime.date.today)
-       time_ending = models.DateTimeField(null=True,default=None)
+       time_ending = models.DateTimeField()
 
 class Bid(models.Model):
        bid_id = models.BigAutoField(primary_key=True)
