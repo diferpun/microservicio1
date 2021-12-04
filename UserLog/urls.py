@@ -22,7 +22,7 @@ urlpatterns = [
     #path('admin/', admin.site.urls),
     #path('login/',TokenObtainPairView.as_view()),
     path('login/',views.MyTokenObtainPairView.as_view()),
-    path('refresh/',TokenRefreshView.as_view),
+    path('refresh/',TokenRefreshView.as_view()),
     path('verifyToken/', views.VerifyTokenView.as_view()),
     path('createuser/',views.userViews.UserCreateView.as_view()),
     path('user/<int:pk>',views.userViews.UserDetailView.as_view()),

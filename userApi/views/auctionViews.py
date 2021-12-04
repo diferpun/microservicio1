@@ -1,6 +1,8 @@
 from typing import ClassVar
 from django.conf                             import settings
+from django.db.models.sql.query import Query
 from rest_framework                          import status, views
+from rest_framework import response
 from rest_framework.response                 import Response
 from rest_framework                          import generics, status
 from rest_framework.permissions              import IsAuthenticated
@@ -35,7 +37,11 @@ class  AuctionDeleteView(generics.DestroyAPIView):
         serializer_class   =  AuctionSerializer
         queryset            = Auction.objects.all()
         def delete(self, request, *args, **kwargs):
-            return super().destroy(request, *args, **kwargs)
+            #super().destroy(request, *args, **kwargs)
+            self.queryset=Auction.objects.filter(auction_id=kwargs['pk'])
+            auc_del=list(self.queryset.values())
+            super().delete(self, request, *args, **kwargs)
+            return Response(auc_del,status=status.HTTP_200_OK)
     
 class AuctionListView (generics.ListAPIView):
         serializer_class   = AuctionSerializer

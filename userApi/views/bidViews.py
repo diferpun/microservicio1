@@ -40,6 +40,7 @@ class BidCreateview(views.APIView):
         
         if  bid_date>auction.time_ending:
             stringResponse = {'detail':'auction expired'}
+            
             return Response(stringResponse, status=status.HTTP_400_BAD_REQUEST) 
         
         auction.base_offer=request.data['offer']
@@ -90,8 +91,9 @@ class BidDeleteview(generics.DestroyAPIView):
             # valid_data    = tokenBackend.decode(token,verify=False)
             self.queryset = Bid.objects.filter(auction_id=int(kwargs['auction']),
                                                user_id=int(kwargs['user']))
+            query_dic=list(self.queryset.values())
             if  not self.queryset.exists():
                 return Response("No existe la puja ",status=status.HTTP_204_NO_CONTENT) 
             self.queryset.delete() 
-            return Response("Los registros se eliminaron",status=status.HTTP_200_OK) 
+            return Response(query_dic,status=status.HTTP_200_OK) 
         

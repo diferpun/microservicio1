@@ -62,8 +62,9 @@ class UserDeleteView(generics.DestroyAPIView):
         # if valid_data['user_id'] != kwargs['pk']:
         #     response = {'detail':'Unauthorized Request'}
         #     return Response(response, status=status.HTTP_401_UNAUTHORIZED)    
+        user_del=list(User.objects.filter(id=int(kwargs['pk'])).values('id','firstname','lastname','username'))
         super().delete(self, request, *args, **kwargs)
-        return Response(status=status.HTTP_200_OK)
+        return Response(user_del,status=status.HTTP_200_OK)
 
 class UserListView(generics.ListAPIView):
       serializer_class    = UserSerializer
