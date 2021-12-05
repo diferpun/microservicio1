@@ -40,7 +40,7 @@ class UsersView(views.APIView):
     
         users=User.objects.all()
         users_serializers = UserSerializer(users, many=True)
-        return Response(users_serializers.data)
+        return Response(users_serializers.data,status=status.HTTP_200_OK)
 
 class UserUpdateView(views.APIView):
       def get_user(self, id):
@@ -55,8 +55,9 @@ class UserUpdateView(views.APIView):
         serializer = UserSerializer(user, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(f"Se actualizó el usuario con el ID # {kwargs['pk']} ", status=status.HTTP_200_OK)
+
+        return Response("No se pudo actualizar el usuario.")
 
 class UserDeleteView(views.APIView):
     def get_user(self, id):

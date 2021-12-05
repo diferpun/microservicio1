@@ -24,19 +24,15 @@ class BidCreateView(views.APIView):
         bid_date=datetime.datetime.now(tz=timezone.utc)
        
         if  float(request.data['offer']) <= float(current_offer):
-            stringResponse = {'detail':'low bid'}
-            return Response(stringResponse, status=status.HTTP_400_BAD_REQUEST) 
+            return Response("valor de puja bajo.") 
         
         if  bid_date>auction.time_ending:
-            stringResponse = {'detail':'auction expired'}
-            return Response(stringResponse, status=status.HTTP_400_BAD_REQUEST) 
-        
+            return Response("La subasta expiró.") 
         
         auction.base_offer=request.data['offer']
         serializer.save()
         auction.save()
-        
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response("Se creó la puja.", status=status.HTTP_201_CREATED)
 
 class BidDetailView(views.APIView):
     
@@ -72,7 +68,7 @@ class BidDeleteView(generics.DestroyAPIView):
             self.queryset = Bid.objects.filter(user_id=self.kwargs["user"],auction_id=int(kwargs['auction']))
             
             if  not self.queryset.exists():
-                return Response("No existe la puja ",status=status.HTTP_204_NO_CONTENT)
+                return Response("No existe la puja. ")
 
             self.queryset.delete() 
             return Response(f"Se eliminaron las pujas correspondientes a la subasta {auctions} del cliente {users}",status=status.HTTP_200_OK) 
