@@ -1,0 +1,466 @@
+{
+	"info": {
+		"_postman_id": "22ce4fab-1a38-4bde-bc5e-909353503a94",
+		"name": "usermicroservice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Microservicio1",
+			"item": [
+				{
+					"name": "createuser",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"firstname\": \"laura\",\r\n    \"lastname\": \"Suarez\",\r\n    \"username\": \"lau\",\r\n    \"password\": \"lau\",\r\n    \"email\": \"lausu@gmail.com\",\r\n    \"isadmi\": false\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://auction-desp-be.herokuapp.com/createuser/",
+							"protocol": "https",
+							"host": [
+								"auction-desp-be",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"createuser",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"lau\",\r\n    \"password\": \"lau\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://auction-desp-be.herokuapp.com/login/",
+							"protocol": "https",
+							"host": [
+								"auction-desp-be",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refreshuser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYzODgxMTIwMywianRpIjoiYTI0MjRkNTZmZTk1NDhkMDgzYTBiMzlmMWY4MGQzZGYiLCJ1c2VyX2lkIjoxOX0.K7JX57MXlyWihL9Iic3fVq4skgu-ksRa216Z7P5IqpM\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://auction-desp-be.herokuapp.com/refresh/",
+							"protocol": "https",
+							"host": [
+								"auction-desp-be",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"refresh",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userDetail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://auction-desp-be.herokuapp.com/user/19",
+							"protocol": "https",
+							"host": [
+								"auction-desp-be",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"user",
+								"19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://auction-desp-be.herokuapp.com/users",
+							"protocol": "https",
+							"host": [
+								"auction-desp-be",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateuser",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n\r\n       \"id\": 19,\r\n    \"firstname\": \"Lauran\",\r\n    \"lastname\": \"Suarez\",\r\n    \"username\": \"lau\",\r\n    \"password\": \"lau\",\r\n    \"email\": \"laus@gmail.com\",\r\n    \"isadmi\": false\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://auction-desp-be.herokuapp.com/updateuser/19",
+							"protocol": "https",
+							"host": [
+								"auction-desp-be",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"updateuser",
+								"19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteuser",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://auction-desp-be.herokuapp.com/deleteuser/9",
+							"protocol": "https",
+							"host": [
+								"auction-desp-be",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"deleteuser",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_auction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"product\": \"P-007\",\r\n    \"base_offer\":570,\r\n    \"time_starting\": \"2021-11-29T15:58:44.767594-06:00\",\r\n    \"time_ending\": \"2021-12-05T15:58:44.767594-06:00\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://auction-desp-be.herokuapp.com/createauction/",
+							"protocol": "https",
+							"host": [
+								"auction-desp-be",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"createauction",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAuction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://auction-desp-be.herokuapp.com/auctiondetailView/12",
+							"protocol": "https",
+							"host": [
+								"auction-desp-be",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auctiondetailView",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateAuction",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product\": \"P-007\",\r\n    \"base_offer\":200,\r\n    \"time_starting\": \"2021-11-29T15:58:44.767594-06:00\",\r\n    \"time_ending\": \"2021-12-06T15:58:44.767594-06:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://auction-desp-be.herokuapp.com/auctionupdateView/12",
+							"protocol": "https",
+							"host": [
+								"auction-desp-be",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auctionupdateView",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getallauction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://auction-desp-be.herokuapp.com/auctionlistview/",
+							"protocol": "https",
+							"host": [
+								"auction-desp-be",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auctionlistview",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteauction",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://auction-desp-be.herokuapp.com/auctiondeleteView/12",
+							"protocol": "https",
+							"host": [
+								"auction-desp-be",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auctiondeleteView",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_bid",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"user\": 19,\r\n    \"auction\": 11,\r\n    \"offer\": 220\r\n    \r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://auction-desp-be.herokuapp.com/createbid/",
+							"protocol": "https",
+							"host": [
+								"auction-desp-be",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"createbid",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Getbidwithuser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://auction-desp-be.herokuapp.com/detailbid/19",
+							"protocol": "https",
+							"host": [
+								"auction-desp-be",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"detailbid",
+								"19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getbidtop5withuserandauction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://auction-desp-be.herokuapp.com/topbid/19/11",
+							"protocol": "https",
+							"host": [
+								"auction-desp-be",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"topbid",
+								"19",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBids",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://auction-desp-be.herokuapp.com/bids",
+							"protocol": "https",
+							"host": [
+								"auction-desp-be",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"bids"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletebidbyauction",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://auction-desp-be.herokuapp.com/deletebid/19/11",
+							"protocol": "https",
+							"host": [
+								"auction-desp-be",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"deletebid",
+								"19",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
