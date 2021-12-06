@@ -4,7 +4,7 @@ Esta aplicación plantea el desarrollo de una plataforma web para realizar subas
 
 <h2>URL microservicio</h2>
 
-https://minticmicroservicio1.herokuapp.com/
+https://auction-desp-be.herokuapp.com/
 
 
 <h2>End Points</h2>
