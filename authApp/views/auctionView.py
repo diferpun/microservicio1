@@ -15,7 +15,7 @@ class AuctionCreateview(views.APIView):
         serializer = AuctionSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         if Auction.objects.filter(product=request.data['product']).exists():
-           return Response("La subasta ya existe.")    
+           return Response("La subasta ya existe.",  status=status.HTTP_400_BAD_REQUEST)    
         serializer.save()
         return Response("subasta fue creada exitosamente.", status=status.HTTP_201_CREATED)
 

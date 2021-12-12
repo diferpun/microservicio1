@@ -57,7 +57,7 @@ class UserUpdateView(views.APIView):
             serializer.save()
             return Response(f"Se actualizó el usuario con el ID # {kwargs['pk']} ", status=status.HTTP_200_OK)
 
-        return Response("No se pudo actualizar el usuario.")
+        return Response("No se pudo actualizar el usuario." , status=status.HTTP_400_BAD_REQUEST)
 
 class UserDeleteView(views.APIView):
     def get_user(self, id):

@@ -11,7 +11,8 @@ from authApp.models.auction import Bid,Auction
 from authApp.serializers.auctionSerializer  import BidSerializer,AuctionSerializer 
 from rest_framework.exceptions               import PermissionDenied
 from django.utils import timezone 
-import datetime                        
+import datetime   
+from datetime import date, timedelta                     
 
 class BidCreateView(views.APIView):   
      
@@ -21,13 +22,13 @@ class BidCreateView(views.APIView):
         auction=Auction.objects.get(auction_id=request.data['auction'])
         current_offer=auction.base_offer
         
-        bid_date=datetime.datetime.now(tz=timezone.utc)
+        bid_date= date.today()
        
         if  float(request.data['offer']) <= float(current_offer):
-            return Response("valor de puja bajo.") 
+            return Response("valor de puja bajo.",  status=status.HTTP_400_BAD_REQUEST) 
         
         if  bid_date>auction.time_ending:
-            return Response("La subasta expiró.") 
+            return Response("La subasta expiró.",  status=status.HTTP_400_BAD_REQUEST) 
         
         auction.base_offer=request.data['offer']
         serializer.save()
@@ -68,7 +69,7 @@ class BidDeleteView(generics.DestroyAPIView):
             self.queryset = Bid.objects.filter(user_id=self.kwargs["user"],auction_id=int(kwargs['auction']))
             
             if  not self.queryset.exists():
-                return Response("No existe la puja. ")
+                return Response("No existe la puja. ",  status=status.HTTP_400_BAD_REQUEST)
 
             self.queryset.delete() 
             return Response(f"Se eliminaron las pujas correspondientes a la subasta {auctions} del cliente {users}",status=status.HTTP_200_OK) 

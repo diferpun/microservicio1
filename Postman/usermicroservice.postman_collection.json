@@ -219,7 +219,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n    \"product\": \"P-007\",\r\n    \"base_offer\":570,\r\n    \"time_starting\": \"2021-11-29T15:58:44.767594-06:00\",\r\n    \"time_ending\": \"2021-12-05T15:58:44.767594-06:00\"\r\n\r\n}",
+							"raw": "{ \r\n    \"product\": \"P-009\",\r\n    \"base_offer\":450,\r\n    \"time_starting\": \"2021-12-01\",\r\n    \"time_ending\": \"2021-12-01\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -270,7 +270,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"product\": \"P-007\",\r\n    \"base_offer\":200,\r\n    \"time_starting\": \"2021-11-29T15:58:44.767594-06:00\",\r\n    \"time_ending\": \"2021-12-06T15:58:44.767594-06:00\"\r\n}",
+							"raw": "{\r\n    \"product\": \"P-013\",\r\n    \"base_offer\":200,\r\n    \"time_starting\": \"2021-11-29\",\r\n    \"time_ending\": \"2021-12-06\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -278,7 +278,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://auction-desp-be.herokuapp.com/auctionupdateView/12",
+							"raw": "https://auction-desp-be.herokuapp.com/auctionupdateView/5",
 							"protocol": "https",
 							"host": [
 								"auction-desp-be",
@@ -287,7 +287,7 @@
 							],
 							"path": [
 								"auctionupdateView",
-								"12"
+								"5"
 							]
 						}
 					},
